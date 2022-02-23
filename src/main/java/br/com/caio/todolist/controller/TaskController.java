@@ -2,6 +2,10 @@ package br.com.caio.todolist.controller;
 
 import br.com.caio.todolist.entity.Task;
 import br.com.caio.todolist.service.TaskService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,16 +19,23 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/task")
+@Api(value="Task")
 public class TaskController {
 
     @Autowired
     private TaskService taskService;
 
+    @ApiOperation(value = "Lista todas as tasks")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201,message = "Task criada com sucesso"),
+            @ApiResponse(code = 500,message = "Erro interno")
+    })
     @GetMapping
     public ResponseEntity<List<Task>> getTasks(){
         return ResponseEntity.ok(taskService.getAllTasks());
     }
 
+    @ApiOperation(value = "Busca uma task por ID")
     @GetMapping(path = "/{id}")
     public ResponseEntity<Task> getTaskById(@PathVariable long id){
        return taskService.findTaskById(id);

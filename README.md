@@ -10,6 +10,7 @@ Essa API desenvolvida se assemelha a um todo-list(lista de tarefas), onde é pos
   <li>Swagger</li>
   <li>H2 Database</li>
   <li>Docker</li>
+  <li>Maven</li>
 <ul>
   
   <h2>Executando a aplicação no Docker</h2>
